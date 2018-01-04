@@ -1,0 +1,27 @@
+version: "3"
+services:  # containers. same as docker run
+   my-drupal: # a friendly name. this is also DNS name inside network
+    image: drupal # Optional if you use build:
+    ports:
+     - "7070:80"
+    volumes:
+     - drupal-modules:/var/www/html/modules 
+     - drupal-profiles:/var/www/html/profiles 
+     - drupal-sites:/var/www/html/sites 
+     - drupal-themes:/var/www/html/themes 
+
+   my-psql:
+    image: postgres:latest
+    environment: 
+     - POSTGRES_PASSWORD = pass
+    volumes:
+     - psql:/var/lib/postgresql/data
+
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
+  psql:
+ 
+   
